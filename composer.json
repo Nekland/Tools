@@ -1,0 +1,8 @@
+{
+    "name": "nekland/tools",
+    "licence": "MIT",
+    "description": "Just some tools to work better with PHP",
+    "autoload": {
+        "psr-0": { "": "src/" }
+    }
+}
