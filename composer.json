@@ -3,6 +3,6 @@
     "licence": "MIT",
     "description": "Just some tools to work better with PHP",
     "autoload": {
-        "psr-0": { "Nekland\\Tools": "" }
+        "psr-0": { "Nekland\\Tools\\": "" }
     }
 }
