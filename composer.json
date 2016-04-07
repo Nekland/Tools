@@ -4,5 +4,8 @@
     "description": "Just some tools to work better with PHP",
     "autoload": {
         "psr-4": { "Nekland\\Tools\\": "" }
+    },
+    "require-dev": {
+        "phpspec/phpspec": "^2.5"
     }
 }
