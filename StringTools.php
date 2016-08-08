@@ -56,4 +56,18 @@ class StringTools
 
         return mb_substr($str, mb_strlen($toRemove));
     }
+
+    /**
+     * @param string $str       The string that should contains the needle
+     * @param string $needle    What should be contained
+     * @return bool
+     */
+    public static function contains($str, $needle)
+    {
+        $position = strpos($str, $needle);
+        if ($position === 0) {
+            return true;
+        }
+        return (bool) $position;
+    }
 }

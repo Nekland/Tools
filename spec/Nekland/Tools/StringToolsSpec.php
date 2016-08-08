@@ -50,4 +50,22 @@ class StringToolsSpec extends ObjectBehavior
         $this::removeStart('Foo bar baz', 'Foo')->shouldReturn(' bar baz');
         $this::removeStart('YOLOOOsgs gs gsg sggs g', 'g')->shouldReturn('YOLOOOsgs gs gsg sggs g');
     }
+
+    function it_should_contain_str()
+    {
+        $this::contains('PHP Test India vous êtes accepté', 'accepté')->shouldReturn(true);
+        $this::contains('PHP Test India vous êtes accepté', 'êtes accepté')->shouldReturn(true);
+        $this::contains('PHP Test India vous êtes accepté', 'vous êtes accepté')->shouldReturn(true);
+        $this::contains('PHP Test India vous êtes accepté', 'Test India vous êtes accepté')->shouldReturn(true);
+        $this::contains('PHP Test India vous êtes accepté', 'PHP')->shouldReturn(true);
+        $this::contains('PHP Test India vous êtes accepté', 'PHP Test India vous êtes accepté')->shouldReturn(true);
+        $this::contains('PHP Test India vous êtes accepté', 'coucou le test')->shouldReturn(false);
+        $this::contains('PHP Test India vous êtes accepté', 'PHP Test India vous êtes accepte')->shouldReturn(false);
+        $this::contains('PHP Test India vous êtes accepté', 'PHP Test India vous êtes refusé')->shouldReturn(false);
+        $this::contains('PHP Test India vous êtes accepté', 'Lorem Ipsum vous êtes accepté')->shouldReturn(false);
+        $this::contains('PHP Test India vous êtes accepté', 'Lorem Ipsum vous êtes refusé')->shouldReturn(false);
+        $this::contains('Theres nothing to see here', 'there there')->shouldReturn(false);
+        $this::contains('Hello everybody, how are you today ? :)', 'everybody, how')->shouldReturn(true);
+        $this::contains('Hello world ! =)', '.+')->shouldReturn(false);
+    }
 }
