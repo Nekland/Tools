@@ -14,8 +14,6 @@ Installation
 composer require "nekland/tools"
 ```
 
-Then `composer update nekland/tools`.
-
 Reference
 ---------
 
