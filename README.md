@@ -17,7 +17,7 @@ composer require "nekland/tools"
 Reference
 ---------
 
-### StrinTools class
+### StringTools class
 
 **Encoding arguments are optionals.**
 
