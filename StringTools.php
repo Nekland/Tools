@@ -21,53 +21,61 @@ class StringTools
     /**
      * @param string $str
      * @param string $start
+     * @param string $encoding
      * @return bool
      */
-    public static function startsWith($str, $start)
+    public static function startsWith($str, $start, $encoding = 'UTF-8')
     {
-        $length = mb_strlen($start);
-        return substr($str, 0, $length) === $start;
+        $length = mb_strlen($start, $encoding);
+
+        return mb_substr($str, 0, $length, $encoding) === $start;
     }
 
     /**
      * @param string $str
      * @param string $end
+     * @param string $encoding
      * @return bool
      */
-    public static function endsWith($str, $end)
+    public static function endsWith($str, $end, $encoding = 'UTF-8')
     {
-        $length = mb_strlen($end);
+        $length = mb_strlen($end, $encoding);
         if ($length === 0) {
             return true;
         }
-        return substr($str, -$length) === $end;
+
+        return mb_substr($str, -$length, $length, $encoding) === $end;
     }
 
     /**
      * @param string $str
      * @param string $toRemove
+     * @param string $encoding
      * @return string
      */
-    public static function removeStart($str, $toRemove)
+    public static function removeStart($str, $toRemove, $encoding = 'UTF-8')
     {
-        if (!StringTools::startsWith($str, $toRemove)) {
+        if (!StringTools::startsWith($str, $toRemove, $encoding)) {
             return $str;
         }
+        $sizeToRemove = mb_strlen($toRemove, $encoding);
 
-        return mb_substr($str, mb_strlen($toRemove));
+        return mb_substr($str, $sizeToRemove, mb_strlen($str, $encoding) - $sizeToRemove, $encoding);
     }
 
     /**
      * @param string $str       The string that should contains the needle
      * @param string $needle    What should be contained
+     * @param string $encoding
      * @return bool
      */
-    public static function contains($str, $needle)
+    public static function contains($str, $needle, $encoding = 'UTF-8')
     {
-        $position = strpos($str, $needle);
+        $position = mb_strpos($str, $needle, 0, $encoding);
         if ($position === 0) {
             return true;
         }
+
         return (bool) $position;
     }
 }

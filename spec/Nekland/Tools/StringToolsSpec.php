@@ -15,11 +15,13 @@ class StringToolsSpec extends ObjectBehavior
     function it_should_transform_snake_case_to_camel_case()
     {
         $this::camelize('hello_world')->shouldReturn('HelloWorld');
+        $this::camelize('foo🍕')->shouldReturn('Foo🍕');
     }
 
     function it_should_transform_kebab_case_to_camel_case()
     {
         $this::camelize('hello-world', '-')->shouldReturn('HelloWorld');
+        $this::camelize('foo-🍕-bar', '-')->shouldReturn('Foo🍕Bar');
     }
 
     function it_should_not_transform_others_than_kebab_or_snake_case()
@@ -34,6 +36,7 @@ class StringToolsSpec extends ObjectBehavior
         $this::startsWith("\nLorem ipsum heyà", 'Lorem')->shouldReturn(false);
         $this::startsWith(' ipsum heyà Lorem', 'Lorem')->shouldReturn(false);
         $this::startsWith(' ipsum heyà Lorem', '')->shouldReturn(true);
+        $this::startsWith('Lorem 🍕 ipsum', 'Lorem 🍕')->shouldReturn(true);
     }
 
     function it_should_check_if_string_ends_with_needle()
@@ -43,11 +46,13 @@ class StringToolsSpec extends ObjectBehavior
         $this::endsWith('Foo bar marche baz ça ', 'marche')->shouldReturn(false);
         $this::endsWith('marche Foo bar baz ça ', 'marche')->shouldReturn(false);
         $this::endsWith('marche Foo bar baz ça ', '')->shouldReturn(true);
+        $this::endsWith('Hello my 🍕 world !', '🍕 world !')->shouldReturn(true);
     }
 
     function it_should_remove_the_start_of_a_string()
     {
         $this::removeStart('Foo bar baz', 'Foo')->shouldReturn(' bar baz');
+        $this::removeStart('I really ❤️ 🍕 !', 'I really ❤️')->shouldReturn(' 🍕 !');
         $this::removeStart('YOLOOOsgs gs gsg sggs g', 'g')->shouldReturn('YOLOOOsgs gs gsg sggs g');
     }
 
@@ -67,5 +72,7 @@ class StringToolsSpec extends ObjectBehavior
         $this::contains('Theres nothing to see here', 'there there')->shouldReturn(false);
         $this::contains('Hello everybody, how are you today ? :)', 'everybody, how')->shouldReturn(true);
         $this::contains('Hello world ! =)', '.+')->shouldReturn(false);
+        $this::contains('Hello world ! 😀', '! 😀')->shouldReturn(true);
+        $this::contains('Hello 👽 aliens !', 'aliens')->shouldReturn(true);
     }
 }
