@@ -24,11 +24,11 @@ class StringTools
      * @param string $encoding
      * @return bool
      */
-    public static function startsWith($str, $start, $encoding = 'UTF-8')
+    public static function startsWith($str, $start)
     {
-        $length = mb_strlen($start, $encoding);
+        $length = strlen($start);
 
-        return mb_substr($str, 0, $length, $encoding) === $start;
+        return substr($str, 0, $length, $encoding) === $start;
     }
 
     /**
