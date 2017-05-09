@@ -28,7 +28,7 @@ class StringTools
     {
         $length = strlen($start);
 
-        return substr($str, 0, $length, $encoding) === $start;
+        return substr($str, 0, $length) === $start;
     }
 
     /**
