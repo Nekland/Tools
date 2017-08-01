@@ -21,7 +21,6 @@ class StringTools
     /**
      * @param string $str
      * @param string $start
-     * @param string $encoding
      * @return bool
      */
     public static function startsWith($str, $start)

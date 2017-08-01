@@ -33,7 +33,7 @@ StringTools::camelize($str, $from) : string
 #### ::startsWith
 
 ```php
-StringTools::startsWith($str, $start, $encoding) : bool
+StringTools::startsWith($str, $start) : bool
 ```
 
 * `$str` string input
