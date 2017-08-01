@@ -7,15 +7,27 @@ class StringTools
     /**
      * @param string $str
      * @param string $from
+     * @param string $encoding
      * @return string
      */
-    public static function camelize($str, $from = '_')
+    public static function camelize($str, $from = '_', $encoding = 'UTF-8')
     {
         if (!in_array($from, ['_', '-'])) {
             throw new \InvalidArgumentException('We can camelize only from snake case or kebab case.');
         }
 
-        return implode('', array_map('ucfirst', array_map('strtolower', explode($from, $str))));
+        return implode('',
+            array_map(
+                // Up the first letter for each sub string
+                function ($item) use ($encoding) {
+                    return StringTools::mb_ucfirst($item, $encoding);
+                },
+                // Lowercase the whole string (otherwise it's not camelize)
+                array_map(function ($item) use ($encoding) {
+                    return mb_strtolower($item, $encoding);
+                }, explode($from, $str))
+            )
+        );
     }
 
     /**
@@ -33,48 +45,61 @@ class StringTools
     /**
      * @param string $str
      * @param string $end
-     * @param string $encoding
      * @return bool
      */
-    public static function endsWith($str, $end, $encoding = 'UTF-8')
+    public static function endsWith($str, $end)
     {
-        $length = mb_strlen($end, $encoding);
+        $length = strlen($end);
         if ($length === 0) {
             return true;
         }
 
-        return mb_substr($str, -$length, $length, $encoding) === $end;
+        return substr($str, -$length, $length) === $end;
     }
 
     /**
      * @param string $str
      * @param string $toRemove
-     * @param string $encoding
      * @return string
      */
-    public static function removeStart($str, $toRemove, $encoding = 'UTF-8')
+    public static function removeStart($str, $toRemove)
     {
-        if (!StringTools::startsWith($str, $toRemove, $encoding)) {
+        if (!StringTools::startsWith($str, $toRemove)) {
             return $str;
         }
-        $sizeToRemove = mb_strlen($toRemove, $encoding);
+        $sizeToRemove = strlen($toRemove);
 
-        return mb_substr($str, $sizeToRemove, mb_strlen($str, $encoding) - $sizeToRemove, $encoding);
+        return substr($str, $sizeToRemove, strlen($str) - $sizeToRemove);
     }
 
     /**
      * @param string $str       The string that should contains the needle
      * @param string $needle    What should be contained
-     * @param string $encoding
      * @return bool
      */
-    public static function contains($str, $needle, $encoding = 'UTF-8')
+    public static function contains($str, $needle)
     {
-        $position = mb_strpos($str, $needle, 0, $encoding);
+        $position = mb_strpos($str, $needle, 0);
         if ($position === 0) {
             return true;
         }
 
         return (bool) $position;
+    }
+
+    /**
+     * This function is missing in PHP for now.
+     *
+     * @param string $str
+     * @param string $encoding
+     * @return string
+     */
+    public static function mb_ucfirst($str, $encoding = 'UTF-8')
+    {
+        $length = mb_strlen($str, $encoding);
+        $firstChar = mb_substr($str, 0, 1, $encoding);
+        $then = mb_substr($str, 1, $length - 1, $encoding);
+
+        return mb_strtoupper($firstChar, $encoding) . $then;
     }
 }
