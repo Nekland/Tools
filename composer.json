@@ -3,7 +3,7 @@
     "licence": "MIT",
     "description": "Just some tools to work better with PHP",
     "autoload": {
-        "psr-4": { "Nekland\\Tools\\": "" }
+        "psr-4": { "Nekland\\Tools\\": "src/" }
     },
     "require-dev": {
         "phpspec/phpspec": "^2.5"

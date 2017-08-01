@@ -75,4 +75,12 @@ class StringToolsSpec extends ObjectBehavior
         $this::contains('Hello world ! 😀', '! 😀')->shouldReturn(true);
         $this::contains('Hello 👽 aliens !', 'aliens')->shouldReturn(true);
     }
+
+    function it_should_uppercase_first_letter_with_ucfirst()
+    {
+        $this::mb_ucfirst('hello')->shouldReturn('Hello');
+        $this::mb_ucfirst('helloWorlD')->shouldReturn('HelloWorlD');
+        $this::mb_ucfirst('HelloWorld')->shouldReturn('HelloWorld');
+        $this::mb_ucfirst('🍕isReallyGood')->shouldReturn('🍕isReallyGood');
+    }
 }

@@ -24,13 +24,16 @@ Reference
 #### ::camelize
 
 ```php
-StringTools::camelize($str, $from) : string
+StringTools::camelize($str, $from, $encoding) : string
 ```
 
 * `$str` string input
-* `$from` (optional, default "\_") string entry format (can be "-" or "\_")
+* `$from` (optional, default "\_") input string format (can be "-" or "\_")
+* `$encoding` (optional, default "UTF-8") encoding of your input string
 
 #### ::startsWith
+
+Say if the given string starts with needle or not.
 
 ```php
 StringTools::startsWith($str, $start) : bool
@@ -41,8 +44,10 @@ StringTools::startsWith($str, $start) : bool
 
 #### ::endsWith
 
+Say if the given string ends with needle or not.
+
 ```php
-StringTools::endsWith($str, $end, $encoding) : bool
+StringTools::endsWith($str, $end) : bool
 ```
 
 * `$str` string input
@@ -50,8 +55,10 @@ StringTools::endsWith($str, $end, $encoding) : bool
 
 #### ::removeStart
 
+Removes the start of the string if it matches with the given one.
+
 ```php
-StringTools::removeStart($str, $toRemove, $encoding) : string
+StringTools::removeStart($str, $toRemove) : string
 ```
 
 * `$str` string input
@@ -60,11 +67,22 @@ StringTools::removeStart($str, $toRemove, $encoding) : string
 #### ::contains
 
 ```php
-StringTools::contains($str, $needle, $encoding) : bool
+StringTools::contains($str, $needle) : bool
 ```
 
 * `$str` string input
 * `$needle` potentially contained string
+
+#### ::mb_ucfirst
+
+Adds missing multi-byte PHP function for `ucfirst` standard function.
+
+```
+StringTools::mb_ucfirst($str, $encoding) : string
+```
+
+* `$str` string input
+* `$encoding` (optional, default "UTF-8") encoding of your input string
 
 ### EqualableInterface
 

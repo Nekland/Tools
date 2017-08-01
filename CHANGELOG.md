@@ -1,0 +1,25 @@
+# Changelog
+All notable changes to this project will be documented in this file.
+
+The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
+and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
+
+## [Unreleased]
+
+### Added
+- New method `mb_ucfirst`.
+
+### Changed
+- Sources are now located inside `src` folder.
+- [Minor BC Break] many parameters `encoding` are suppressed because processing is faster without and they are not
+  mandatory. _This change doesn't break your code but may in the future if we add new parameters._
+
+### Fixed
+- Unicode usage for `camelize` method.
+
+## [1.0.0] - 2016-11-3
+
+### Added
+
+- StringTools class.
+- EqualableInterface interface.
