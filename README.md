@@ -91,3 +91,31 @@ Helps you equals on objects on a similar way as [java](http://stackoverflow.com/
 #### equals
 
 Method that you must implements to check if the object taking as parameter is equals or not.
+
+### DateTimeComparator class
+
+#### ::greatest
+
+Compare two \DateTimeInterface and return the greatest
+_If one of given \DateTimeInterface parameters is null, return is the other one \DateTimeInterface_
+_If both \DateTimeInterface parameters are null, return is null_
+
+```php
+DateTimeComparator::greatest($dateTime1, $dateTime2) : ?\DateTimeInterface
+```
+
+* `$dateTime1` The first \DateTimeInterface or null
+* `$dateTime2` The second \DateTimeInterface or null
+
+#### ::lowest
+
+Compare two \DateTimeInterface and return the lowest
+_If one of given \DateTimeInterface parameters is null, return is the other one \DateTimeInterface_
+_If both \DateTimeInterface parameters are null, return is null_
+
+```php
+DateTimeComparator::lowest($dateTime1, $dateTime2) : ?\DateTimeInterface
+```
+
+* `$dateTime1` The first \DateTimeInterface or null
+* `$dateTime2` The second \DateTimeInterface or null
