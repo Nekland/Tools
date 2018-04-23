@@ -17,6 +17,13 @@ composer require "nekland/tools"
 Reference
 ---------
 
+This library provide some tools to help you with your developments.
+
+Here is the list of tools it provides:
+- [StringTools](#stringtools-class)
+- [EqualableInterface](#equalableinterface)
+- [DateTimeComparator](#datetimecomparator-class)
+
 ### StringTools class
 
 **Encoding arguments are optionals.**
