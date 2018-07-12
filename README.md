@@ -21,6 +21,7 @@ This library provide some tools to help you with your developments.
 
 Here is the list of tools it provides:
 - [StringTools](#stringtools-class)
+- [ArrayTools](#arraytools-class)
 - [EqualableInterface](#equalableinterface)
 - [DateTimeComparator](#datetimecomparator-class)
 
@@ -90,6 +91,17 @@ StringTools::mb_ucfirst($str, $encoding) : string
 
 * `$str` string input
 * `$encoding` (optional, default "UTF-8") encoding of your input string
+
+### ArrayTools class
+
+#### ::removeValue
+
+```php
+ArrayTools::removeValue($array, $value) : void
+```
+
+* `$array` input array passed by reference
+* `$value` The value to remove from the $array
 
 ### EqualableInterface
 
