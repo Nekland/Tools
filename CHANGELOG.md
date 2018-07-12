@@ -5,6 +5,9 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+### Added
+- New `ArrayTools` class helper
+- `ArrayTools::removeValue` method to remove a value from given array
 
 ## [2.1.0] - 2017-04-23
 ### Added
