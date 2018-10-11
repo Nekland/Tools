@@ -1,6 +1,6 @@
 {
     "name": "nekland/tools",
-    "licence": "MIT",
+    "license": "MIT",
     "description": "Just some tools to work better with PHP",
     "autoload": {
         "psr-4": { "Nekland\\Tools\\": "src/" }
