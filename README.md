@@ -72,6 +72,17 @@ StringTools::removeStart($str, $toRemove) : string
 * `$str` string input
 * `$toRemove` string to remove at the start of `$str`
 
+#### ::removeEnd
+
+Removes the end of the string if it matches with the given text to remove.
+
+```php
+StringTools::removeEnd($str, $toRemove) : string
+```
+
+* `$str` string input
+* `$toRemove` string to remove at the end of `$str`
+
 #### ::contains
 
 ```php

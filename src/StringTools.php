@@ -73,6 +73,21 @@ class StringTools
     }
 
     /**
+     * @param string $str
+     * @param string $toRemove
+     * @return string
+     */
+    public static function removeEnd($str, $toRemove)
+    {
+        if (!StringTools::endsWith($str, $toRemove)) {
+            return $str;
+        }
+        $sizeToRemove = strlen($toRemove);
+
+        return substr($str, 0, - $sizeToRemove);
+    }
+
+    /**
      * @param string $str       The string that should contains the needle
      * @param string $needle    What should be contained
      * @return bool
