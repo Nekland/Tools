@@ -83,4 +83,11 @@ class StringToolsSpec extends ObjectBehavior
         $this::mb_ucfirst('HelloWorld')->shouldReturn('HelloWorld');
         $this::mb_ucfirst('🍕isReallyGood')->shouldReturn('🍕isReallyGood');
     }
+
+    function it_should_remove_given_end_of_string()
+    {
+        $this::removeEnd('I\'m some random text with end to remove', 'end to remove')->shouldReturn('I\'m some random text with ');
+        $this::removeEnd('I like 🍪 so I remove 🍕', ' so I remove 🍕')->shouldReturn('I like 🍪');
+        $this::removeEnd('I like pizza', ' and cookies')->shouldReturn('I like pizza');
+    }
 }
