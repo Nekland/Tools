@@ -14,7 +14,7 @@
     "require-dev": {
         "phpspec/phpspec": "^3.2",
         "bossa/phpspec2-expect": "^2.3",
-        "phpunit/phpunit": "^7.5"
+        "phpunit/phpunit": "^5.7"
     },
     "_comment": [
         "PHPSpec is limited to ^3.2 to keep compatibility with PHP5.6"
