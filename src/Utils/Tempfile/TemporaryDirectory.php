@@ -1,0 +1,115 @@
+<?php
+/**
+ * This file is a part of NeklandTools package.
+ *
+ * (c) Nekland <github@nekland.fr>
+ *
+ * For the full license, take a look to the LICENSE file
+ * on the root directory of this project
+ */
+
+namespace Nekland\Utils\Tempfile;
+
+use Nekland\Utils\Tempfile\Exception\ImpossibleToCreateDirectoryException;
+
+class TemporaryDirectory
+{
+    /** @var bool */
+    private $wasAlreadyExisting;
+
+    /** @var string */
+    private $dir;
+
+    /** @var bool */
+    private $removed;
+
+    /**
+     * TemporaryDirectory constructor.
+     *
+     * @param null|string $dir
+     * @param string      $prefix
+     */
+    public function __construct($dir = null, $prefix = 'phpgenerated')
+    {
+        $this->removed = false;
+        $this->wasAlreadyExisting = false;
+        if (null !== $dir && \is_dir($dir)) {
+            $this->wasAlreadyExisting = true;
+            $this->dir = $dir;
+        }
+
+        if (null === $this->dir) {
+            $this->dir = \sys_get_temp_dir() . '/' . $prefix . '_' . \uniqid();
+        }
+
+        if (\mkdir($this->dir) === false) {
+            throw new ImpossibleToCreateDirectoryException($this->dir);
+        }
+    }
+
+    /**
+     * Generates a TemporaryFile from the current TemporaryDirectory
+     *
+     * @return TemporaryFile
+     */
+    public function getTemporaryFile()
+    {
+        return $this->files[] = new TemporaryFile($this);
+    }
+
+    /**
+     * @return string
+     */
+    public function getPathname()
+    {
+        return $this->dir;
+    }
+
+    /**
+     * Removes directory. In case the directory contains files, it will not be removed.
+     * Unless you specify $force to true.
+     *
+     * @param bool $force
+     */
+    public function remove($force = false)
+    {
+        $isEmpty = $this->isEmpty();
+        if ($force && !$isEmpty) {
+            $it = new \RecursiveDirectoryIterator($this->dir, \RecursiveDirectoryIterator::SKIP_DOTS);
+            $files = new \RecursiveIteratorIterator($it, \RecursiveIteratorIterator::CHILD_FIRST);
+            foreach($files as $file) {
+                if ($file->isDir()){
+                    \rmdir($file->getRealPath());
+                } else {
+                    \unlink($file->getRealPath());
+                }
+            }
+
+            \rmdir($this->dir);
+            $this->removed = true;
+
+            return;
+        }
+
+        if ($isEmpty) {
+            \rmdir($this->dir);
+            $this->removed = true;
+        }
+    }
+
+    /**
+     * @return bool
+     */
+    public function hasBeenRemoved()
+    {
+        return $this->removed;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isEmpty()
+    {
+        return !(new \FilesystemIterator($this->dir))->valid();
+    }
+}

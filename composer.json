@@ -3,14 +3,18 @@
     "license": "MIT",
     "description": "Just some tools to work better with PHP",
     "autoload": {
-        "psr-4": { "Nekland\\Tools\\": "src/" }
+        "psr-4": { "Nekland\\Tools\\": "src/Tools/", "Nekland\\Utils\\": "src/Utils/" }
+    },
+    "autoload-dev": {
+        "psr-4": { "Nekland\\Utils\\Test\\": "tests/Nekland/Utils/" }
     },
     "require": {
         "php": "^5.6 || ^7.0"
     },
     "require-dev": {
         "phpspec/phpspec": "^3.2",
-        "bossa/phpspec2-expect": "^2.3"
+        "bossa/phpspec2-expect": "^2.3",
+        "phpunit/phpunit": "^5.7"
     },
     "_comment": [
         "PHPSpec is limited to ^3.2 to keep compatibility with PHP5.6"

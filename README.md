@@ -3,7 +3,7 @@ Nekland Tools
 
 [![Build Status](https://travis-ci.org/Nekland/Tools.svg?branch=master)](https://travis-ci.org/Nekland/Tools)
 
-Just some classes helping to code with PHP in general.
+Just some classes helping to code with PHP in general. No dependencies. High quality code.
 
 **This repository follows semver.**
 
@@ -24,6 +24,8 @@ Here is the list of tools it provides:
 - [ArrayTools](#arraytools-class)
 - [EqualableInterface](#equalableinterface)
 - [DateTimeComparator](#datetimecomparator-class)
+- [TemporaryFile](#temporary-file-management)
+- [TemporaryDirectory](#temporary-directory-management)
 
 ### StringTools class
 
@@ -149,3 +151,74 @@ DateTimeComparator::lowest($dateTime1, $dateTime2) : ?\DateTimeInterface
 
 * `$dateTime1` The first \DateTimeInterface or null
 * `$dateTime2` The second \DateTimeInterface or null
+
+### Temporary file management
+
+The class `TemporaryFile` helps you to create temporary file with ease.
+
+#### ::__construct()
+
+```php
+TemporaryFile::__construct(TemporaryDirectory $dir = null, string $prefix = '')
+```
+
+**Examples:**
+
+```php
+// Create a file in temporary folder
+$file = new TemporaryFile();
+
+// Create a file inside a temporary directory (see TemporaryDirectory class)
+$file = new TemporaryFile($temporaryDir);
+
+// Create a file in a temporary folder with php_ prefix.
+$file = new TemporaryFile(null, 'php_');
+```
+
+#### ::setContent & ::getContent
+
+```php
+TemporaryFile::setContent(string $content)
+TemporaryFile::getContent(): string
+```
+
+#### ::remove()
+
+Removes the file from filesystem.
+
+```php
+TemporaryFile::remove()
+```
+
+### Temporary directory management
+
+#### ::__construct()
+
+```php
+TemporaryDirectory::__construct(string $dir = null, string $prefix = 'phpgenerated')
+```
+
+**Examples:**
+
+```php
+// create a new directory
+$directory = new TemporaryDirectory();
+```
+
+#### ::getTemporaryFile()
+
+Create a `TemporaryFile` from the directory generated.
+
+```php
+TemporaryDirectory::getTemporaryFile(): TemporaryFile
+```
+
+#### ::remove()
+
+Removes the directory.
+
+```php
+TemporaryDirectory::remove(bool $force = false): void
+```
+
+_If `force` is specified to true, it will remove the directory even if it has files inside._
