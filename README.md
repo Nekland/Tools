@@ -126,31 +126,24 @@ Method that you must implements to check if the object taking as parameter is eq
 
 ### DateTimeComparator class
 
+For following methods `lowest` and `greatest`, you can provide unlimited `DateTimeInterface` objects.
+Please note that non DateTimeInterface objects will be ignored by functions.
+
 #### ::greatest
 
-Compare two \DateTimeInterface and return the greatest
-_If one of given \DateTimeInterface parameters is null, return is the other one \DateTimeInterface_
-_If both \DateTimeInterface parameters are null, return is null_
+Compare \DateTimeInterface from parameters and return the greatest
 
 ```php
-DateTimeComparator::greatest($dateTime1, $dateTime2) : ?\DateTimeInterface
+DateTimeComparator::greatest($dateTime1, $dateTime2, $dateTime3, ...) : ?\DateTimeInterface
 ```
-
-* `$dateTime1` The first \DateTimeInterface or null
-* `$dateTime2` The second \DateTimeInterface or null
 
 #### ::lowest
 
-Compare two \DateTimeInterface and return the lowest
-_If one of given \DateTimeInterface parameters is null, return is the other one \DateTimeInterface_
-_If both \DateTimeInterface parameters are null, return is null_
+Compare \DateTimeInterface from parameters and return the lowest
 
 ```php
-DateTimeComparator::lowest($dateTime1, $dateTime2) : ?\DateTimeInterface
+DateTimeComparator::lowest($dateTime1, $dateTime2, $dateTime3, ...) : ?\DateTimeInterface
 ```
-
-* `$dateTime1` The first \DateTimeInterface or null
-* `$dateTime2` The second \DateTimeInterface or null
 
 ### Temporary file management
 
