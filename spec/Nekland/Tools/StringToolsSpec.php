@@ -24,9 +24,9 @@ class StringToolsSpec extends ObjectBehavior
         $this::camelize('foo-🍕-bar', '-')->shouldReturn('Foo🍕Bar');
     }
 
-    function it_should_not_transform_others_than_kebab_or_snake_case()
+    function it_should_be_able_to_camelize_anything()
     {
-        $this::shouldThrow('\InvalidArgumentException')->duringCamelize('hello@world', '@');
+        $this::camelize('something cool', ' ')->shouldReturn('SomethingCool');
     }
 
     function it_should_check_if_string_starts_with_needle()
