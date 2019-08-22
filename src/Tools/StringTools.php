@@ -12,10 +12,6 @@ class StringTools
      */
     public static function camelize($str, $from = '_', $encoding = 'UTF-8')
     {
-        if (!in_array($from, ['_', '-'])) {
-            throw new \InvalidArgumentException('We can camelize only from snake case or kebab case.');
-        }
-
         return implode('',
             array_map(
                 // Up the first letter for each sub string
