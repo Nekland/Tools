@@ -6,8 +6,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [2.5.1] - 2019-09-22
+### Changed
+- Camelize method now allow larger usages (thanks to removal of an exception)
+
 ## [2.5.0] - 2019-02-19
-### Modified - 2019-01-10
+### Changed
 - Update the DateTimeComparator functions to handle N parameters
 
 ## [2.4.0] - 2019-01-07
