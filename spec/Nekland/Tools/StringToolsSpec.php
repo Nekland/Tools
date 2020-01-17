@@ -15,18 +15,24 @@ class StringToolsSpec extends ObjectBehavior
     function it_should_transform_snake_case_to_camel_case()
     {
         $this::camelize('hello_world')->shouldReturn('HelloWorld');
-        $this::camelize('foo🍕')->shouldReturn('Foo🍕');
+        $this::camelize('foo🍕', '-', 'UTF-8', false)->shouldReturn('Foo🍕');
     }
 
     function it_should_transform_kebab_case_to_camel_case()
     {
         $this::camelize('hello-world', '-')->shouldReturn('HelloWorld');
-        $this::camelize('foo-🍕-bar', '-')->shouldReturn('Foo🍕Bar');
+        $this::camelize('foo-🍕-bar', '-', 'UTF-8', false)->shouldReturn('Foo🍕Bar');
     }
 
     function it_should_be_able_to_camelize_anything()
     {
         $this::camelize('something cool', ' ')->shouldReturn('SomethingCool');
+    }
+
+    function it_should_be_able_to_not_normalize_as_well_as_normalize_on_camelize()
+    {
+        $this::camelize('hello-theWorld', '-', 'UTF-8', false)->shouldReturn('HelloTheWorld');
+        $this::camelize('hello-the (world)', '-')->shouldReturn('HelloTheworld');
     }
 
     function it_should_check_if_string_starts_with_needle()

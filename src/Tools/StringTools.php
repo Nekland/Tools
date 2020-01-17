@@ -8,20 +8,29 @@ class StringTools
      * @param string $str
      * @param string $from
      * @param string $encoding
+     * @param bool $normalize  Removes the formatting inside parts of the given strings. Makes sense most part of the time.
      * @return string
      */
-    public static function camelize($str, $from = '_', $encoding = 'UTF-8')
+    public static function camelize($str, $from = '_', $encoding = 'UTF-8', $normalize = true)
     {
+        $items = explode($from, $str);
+
+        if ($normalize) {
+            $items = array_map(function ($item) use ($encoding) {
+                // Removes special characters
+                $item = preg_replace('/[^A-Za-z0-9]/', '', $item);
+                // Lowercase the whole string (otherwise it's not camelize)
+                return mb_strtolower($item, $encoding);
+            }, $items);
+        }
+
         return implode('',
             array_map(
-                // Up the first letter for each sub string
+            // Up the first letter for each sub string
                 function ($item) use ($encoding) {
                     return StringTools::mb_ucfirst($item, $encoding);
                 },
-                // Lowercase the whole string (otherwise it's not camelize)
-                array_map(function ($item) use ($encoding) {
-                    return mb_strtolower($item, $encoding);
-                }, explode($from, $str))
+                $items
             )
         );
     }
