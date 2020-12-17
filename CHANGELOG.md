@@ -6,6 +6,13 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [2.6.0] - 2020-12-17
+## Added
+- Ability to normalize or not the camelize text
+
+## Changed
+- The camelize method normalize by default. It makes a lot of sense, but the old behavior changed, and it may break in some cases
+
 ## [2.5.1] - 2019-09-22
 ### Changed
 - Camelize method now allow larger usages (thanks to removal of an exception)
