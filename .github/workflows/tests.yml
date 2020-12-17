@@ -1,0 +1,38 @@
+name: Spec tests
+on: [pull_request]
+jobs:
+    run-tests:
+        name: PHP ${{ matrix.php }} (${{ matrix.os }})
+
+        runs-on: ${{ matrix.os }}
+
+        strategy:
+            fail-fast: false
+            matrix:
+                php: [ 7.3, 7.4, 8.0 ]
+                os: [ ubuntu-latest ]
+                phpunit-versions: ['latest']
+                include:
+                    -   os: [ ubuntu-latest ]
+                        php: 8.1
+                        composer-flag: "--ignore-platform-reqs"
+
+                    -   os: [ ubuntu-latest ]
+                        php: 7.2
+                        composer-flag: "--prefer-lowest"
+
+        steps:
+            -   uses: actions/checkout@v2
+            -   name: Setup PHP
+                uses: shivammathur/setup-php@v2
+                with:
+                    php-version: ${{ matrix.php }}
+
+            -   name: Install dependencies
+                run: composer update --prefer-dist ${{ matrix.composer-flag }}
+
+            -   name: PHPUnit tests
+                run: ./vendor/bin/phpunit
+
+            -   name: PHPSpec tests
+                run: ./vendor/bin/phpspec run

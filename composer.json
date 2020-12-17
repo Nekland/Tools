@@ -12,11 +12,18 @@
         "php": "^7.0 || ^8.0"
     },
     "require-dev": {
-        "phpspec/phpspec": "^3.2",
-        "bossa/phpspec2-expect": "^2.3",
-        "phpunit/phpunit": "^5.7"
+        "phpspec/phpspec": "^6.3.0",
+        "bossa/phpspec2-expect": "dev-feature/php-8",
+        "phpunit/phpunit": "^8.5"
     },
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/Nek-/phpspec2-expect"
+        }
+    ],
     "_comment": [
-        "PHPSpec is limited to ^3.2 to keep compatibility with PHP5.6"
+        "PHPSpec is limited to ^6.x to keep compatibility with PHP7.1",
+        "The repository for expect package is temporary, see https://github.com/BossaConsulting/phpspec2-expect/pull/66"
     ]
 }
