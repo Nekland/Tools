@@ -34,12 +34,13 @@ Here is the list of tools it provides:
 #### ::camelize
 
 ```php
-StringTools::camelize($str, $from, $encoding) : string
+StringTools::camelize($str, $from, $encoding, $normalize = true) : string
 ```
 
 * `$str` string input
 * `$from` (optional, default "\_") input string format (can be "-" or "\_")
 * `$encoding` (optional, default "UTF-8") encoding of your input string
+* `$normalize` decide either you want to normalize (remove special characters) or not, that's what you want in most cases when camelizing
 
 #### ::startsWith
 
