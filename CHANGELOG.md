@@ -9,9 +9,13 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [2.6.0] - 2020-12-17
 ## Added
 - Ability to normalize or not the camelize text
+- Support for PHP 8.x
 
 ## Changed
 - The camelize method normalize by default. It makes a lot of sense, but the old behavior changed, and it may break in some cases
+
+# Removed
+- Support for PHP 5.x
 
 ## [2.5.1] - 2019-09-22
 ### Changed
