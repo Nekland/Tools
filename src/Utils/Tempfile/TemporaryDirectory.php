@@ -10,6 +10,7 @@
 
 namespace Nekland\Utils\Tempfile;
 
+use Nekland\Utils\Exception\LogicException;
 use Nekland\Utils\Tempfile\Exception\ImpossibleToCreateDirectoryException;
 
 class TemporaryDirectory
@@ -24,18 +25,21 @@ class TemporaryDirectory
     private $removed;
 
     /**
-     * TemporaryDirectory constructor.
-     *
      * @param null|string $dir
      * @param string      $prefix
      */
-    public function __construct($dir = null, $prefix = 'phpgenerated')
+    public function __construct(string $dir = null, string $prefix = 'phpgenerated')
     {
         $this->removed = false;
         $this->wasAlreadyExisting = false;
         if (null !== $dir && \is_dir($dir)) {
+            if (!is_writable($dir)) {
+                throw new LogicException(\sprintf('The directory "%s" is not writeable.', $dir));
+            }
+
             $this->wasAlreadyExisting = true;
             $this->dir = $dir;
+            return;
         }
 
         if (null === $this->dir) {
