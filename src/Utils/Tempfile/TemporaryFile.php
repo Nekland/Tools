@@ -10,6 +10,7 @@
 
 namespace Nekland\Utils\Tempfile;
 
+use Nekland\Utils\Exception\LogicException;
 use Nekland\Utils\Exception\RuntimeException;
 use Nekland\Utils\Tempfile\Exception\CannotCreateFileException;
 use Nekland\Utils\Tempfile\Exception\ImpossibleToUpdateFileException;
@@ -89,6 +90,10 @@ class TemporaryFile
      */
     public function getContent()
     {
+        if ($this->removed) {
+            throw new LogicException('The file has been removed definitely and cannot be accessed anymore');
+        }
+
         $content = \file_get_contents($this->file);
 
         if ($content === false) {
