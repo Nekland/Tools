@@ -6,12 +6,17 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [2.6.1] - 2021-08-25
+### Fix
+- Fix constructor of TemporaryDir in the case the directory already exists
+- Better error management while getting content of TemporaryFile
+
 ## [2.6.0] - 2020-12-17
-## Added
+### Added
 - Ability to normalize or not the camelize text
 - Support for PHP 8.x
 
-## Changed
+### Changed
 - The camelize method normalize by default. It makes a lot of sense, but the old behavior changed, and it may break in some cases
 
 # Removed
