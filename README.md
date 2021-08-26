@@ -176,6 +176,14 @@ TemporaryFile::setContent(string $content)
 TemporaryFile::getContent(): string
 ```
 
+#### ::getPathname()
+
+Returns the complete path to the file (ie: `/tmp/generated-folder/filename`)
+
+```php
+TemporaryFile::getPathname(): string
+```
+
 #### ::remove()
 
 Removes the file from filesystem.
@@ -216,3 +224,11 @@ TemporaryDirectory::remove(bool $force = false): void
 ```
 
 _If `force` is specified to true, it will remove the directory even if it has files inside._
+
+#### ::getPathname()
+
+Returns the complete path to the folder (ie: `/tmp/folder-name`)
+
+```php
+TemporaryDirectory::getPathname(): string
+```
