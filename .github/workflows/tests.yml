@@ -9,7 +9,7 @@ jobs:
         strategy:
             fail-fast: false
             matrix:
-                php: [ 7.3, 7.4, 8.0 ]
+                php: [ 7.4, 8.0 ]
                 os: [ ubuntu-latest ]
                 phpunit-versions: ['latest']
                 include:
@@ -18,7 +18,7 @@ jobs:
                         composer-flag: "--ignore-platform-reqs"
 
                     -   os: [ ubuntu-latest ]
-                        php: 7.2
+                        php: 7.3
                         composer-flag: "--prefer-lowest"
 
         steps:
