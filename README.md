@@ -99,7 +99,7 @@ StringTools::contains($str, $needle) : bool
 
 Adds missing multi-byte PHP function for `ucfirst` standard function.
 
-```
+```php
 StringTools::mb_ucfirst($str, $encoding) : string
 ```
 
