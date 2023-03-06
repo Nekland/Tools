@@ -15,14 +15,14 @@ use Nekland\Utils\Tempfile\Exception\ImpossibleToCreateDirectoryException;
 
 class TemporaryDirectory
 {
-    /** @var bool */
-    private $wasAlreadyExisting;
-
     /** @var string */
     private $dir;
 
     /** @var bool */
     private $removed;
+
+    /** @var string[] */
+    private $files;
 
     /**
      * @param null|string $dir
@@ -30,14 +30,13 @@ class TemporaryDirectory
      */
     public function __construct(string $dir = null, string $prefix = 'phpgenerated')
     {
+        $this->files = [];
         $this->removed = false;
-        $this->wasAlreadyExisting = false;
         if (null !== $dir && \is_dir($dir)) {
             if (!is_writable($dir)) {
                 throw new LogicException(\sprintf('The directory "%s" is not writeable.', $dir));
             }
 
-            $this->wasAlreadyExisting = true;
             $this->dir = $dir;
             return;
         }
