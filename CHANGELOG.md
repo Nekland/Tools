@@ -6,6 +6,16 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [2.6.2] - 2022-03-06
+
+## Added
+
+- Completed support for PHP 8.2 (deprecation notice removal)
+
+## Misc
+
+- Code cleaning
+
 ## [2.6.1] - 2021-08-25
 ### Fix
 - Fix constructor of TemporaryDir in the case the directory already exists
