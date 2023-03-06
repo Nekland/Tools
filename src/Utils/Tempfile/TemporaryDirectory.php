@@ -24,12 +24,16 @@ class TemporaryDirectory
     /** @var bool */
     private $removed;
 
+    /** @var string[] */
+    private $files;
+
     /**
      * @param null|string $dir
      * @param string      $prefix
      */
     public function __construct(string $dir = null, string $prefix = 'phpgenerated')
     {
+        $this->files = [];
         $this->removed = false;
         $this->wasAlreadyExisting = false;
         if (null !== $dir && \is_dir($dir)) {
